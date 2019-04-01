@@ -1,6 +1,10 @@
 # Gatsby schema cache bug reproduction repo
 
-This repo is a reproduction of a bug which on subsequential runs after the first run, something in the cache is causing the build to fail.
+**Solution**: The bug was resolving because the `parent` field for the SyrEvent nodes was set to null and given I was not using the parent nodes that the content originated from, Gatsby was cleaning up stale nodes which caused the issues at hand.
+
+---
+
+This repo is a reproduction of a bug which on subsequential runs after the first run, something in the cache is causing the build to fail. This was the issue that it was linked to: https://github.com/gatsbyjs/gatsby/issues/12981
 
 I start out by merging two existing node types, one from a JSON file and one from `gatsby-source-meetup` into a single node type. I'm using the new schema generation APIs to define the type.
 
